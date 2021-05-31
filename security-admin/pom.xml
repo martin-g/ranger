@@ -880,46 +880,46 @@
                     <artifactId>phantomjs</artifactId>
                     <version>2.1.1</version>
                     <classifier>linux-aarch64</classifier>
+                    <type>tar.bz2</type>
                 </dependency>
             </dependencies>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.1.2</version>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.0.0</version>
                         <executions>
                             <execution>
-                                <id>unpack</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
+                                <id>untar phantomjs</id>
+                                <phase>generate-resources</phase>
                                 <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>com.github.liusheng</groupId>
-                                            <artifactId>phantomjs</artifactId>
-                                            <version>2.1.1</version>
-                                            <classifier>linux-aarch64</classifier>
-                                            <type>jar</type>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/phantomjs-aarch64</outputDirectory>
-<!--                                            <destFileName>optional-new-name.jar</destFileName>-->
-<!--                                            <includes>**/*.class,**/*.xml</includes>-->
-<!--                                            <excludes>**/*test.class</excludes>-->
-                                        </artifactItem>
-                                    </artifactItems>
-<!--                                    <includes>**/*.java</includes>-->
-<!--                                    <excludes>**/*.properties</excludes>-->
-<!--                                    <outputDirectory>${project.build.directory}/wars</outputDirectory>-->
-<!--                                    <overWriteReleases>false</overWriteReleases>-->
-<!--                                    <overWriteSnapshots>true</overWriteSnapshots>-->
+                                    <target>
+                                        <echo message="Unpackage PhantomJS" />
+                                        <untar src="${user.home}/.m2/repository/com/github/liusheng/phantomjs/2.1.1/phantomjs-2.1.1-linux-aarch64.tar.bz2" dest="${project.build.directory}" overwrite="false" compression="bzip2"/>
+                                    </target>
                                 </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
                 </plugins>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.github.eirslett</groupId>
+                            <artifactId>frontend-maven-plugin</artifactId>
+                            <configuration>
+                                <environmentVariables>
+                                    <PHANTOMJS_BIN>${project.build.directory}/phantomjs-2.1.1-linux-aarch64/bin/phantomjs</PHANTOMJS_BIN>
+                                    <PATH>${project.build.directory}/phantomjs-2.1.1-linux-aarch64/bin:${env.PATH}</PATH>
+                                </environmentVariables>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
             </build>
         </profile>
     </profiles>
