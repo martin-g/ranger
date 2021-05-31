@@ -52,8 +52,8 @@
                                 <configuration>
                                     <skipAssembly>false</skipAssembly>
                                     <descriptors>
-                                        <descriptor>src/main/assembly/sampleapp.xml</descriptor>
                                         <descriptor>src/main/assembly/plugin-sampleapp.xml</descriptor>
+                                        <descriptor>src/main/assembly/sampleapp.xml</descriptor>
                                         <descriptor>src/main/assembly/sample-client.xml</descriptor>
                                     </descriptors>
                                 </configuration>

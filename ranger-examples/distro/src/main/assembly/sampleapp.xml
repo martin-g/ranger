@@ -26,7 +26,7 @@
     <moduleSet>
      <useAllReactorProjects>true</useAllReactorProjects>
      <includes>
-       <include>org.apache.ranger:sampleapp</include>
+       <include>org.apache.ranger:sampleapp:jar</include>
      </includes>
      <binaries>
         <outputDirectory>lib</outputDirectory>

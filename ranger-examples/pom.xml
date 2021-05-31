@@ -28,7 +28,7 @@
         <module>conditions-enrichers</module>
         <module>sampleapp</module>
         <module>plugin-sampleapp</module>
-        <module>distro</module>
         <module>sample-client</module>
+<!--        <module>distro</module>-->
     </modules>
 </project>
